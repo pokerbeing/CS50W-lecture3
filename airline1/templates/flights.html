@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Flights
+{% endblock %}
+
+{% block body %}
+    <h1>All Flights</h1>
+
+    <ul>
+      <!-- Reads flight information from Python list published by application.py -->
+        {% for flight in flights %}
+            <li>
+                <!-- shows each flight as an unordered list, where each item
+                has a link to a custom URL consisting of flight/flight_id,
+                this transfers to the flight route in application.py -->
+                <a href="{{ url_for('flight', flight_id=flight.id) }}">
+                    {{ flight.origin }} to {{ flight.destination }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
